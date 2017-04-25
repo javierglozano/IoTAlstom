@@ -1,0 +1,1131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.onvif.org/ver10/device/wsdl" elementFormDefault="qualified" targetNamespace="http://www.onvif.org/ver10/device/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://172.0.1.213:5357/OnVifSimulatorService?xsd=xsd1" namespace="http://www.onvif.org/ver10/schema" />
+  <xs:element name="SetStorageConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="StorageConfiguration" type="tns:StorageConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="StorageConfiguration">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.onvif.org/ver10/schema" base="q1:DeviceEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Data" type="tns:StorageConfigurationData" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StorageConfigurationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="LocalPath" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StorageUri" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="User" type="tns:UserCredential" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="type" type="xs:string" />
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="UserCredential">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="UserName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Password" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SetStorageConfigurationResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="DeleteStorageConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Token" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteStorageConfigurationResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetGeoLocation">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetGeoLocationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="Location" type="q2:LocationEntity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetGeoLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="Location" type="q3:LocationEntity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetGeoLocationResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="DeleteGeoLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="Location" type="q4:LocationEntity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteGeoLocationResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetServices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="IncludeCapability" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="Service" type="tns:Service" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Service">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Namespace" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Capabilities">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element xmlns:q5="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="Version" type="q5:OnvifVersion" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:element name="GetServiceCapabilities">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetServiceCapabilitiesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Capabilities" type="tns:DeviceServiceCapabilities" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DeviceServiceCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Network" type="tns:NetworkCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Security" type="tns:SecurityCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="System" type="tns:SystemCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Misc" type="tns:MiscCapabilities" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkCapabilities">
+    <xs:attribute name="IPFilter" type="xs:boolean" />
+    <xs:attribute name="ZeroConfiguration" type="xs:boolean" />
+    <xs:attribute name="IPVersion6" type="xs:boolean" />
+    <xs:attribute name="DynDNS" type="xs:boolean" />
+    <xs:attribute name="Dot11Configuration" type="xs:boolean" />
+    <xs:attribute name="Dot1XConfigurations" type="xs:int" />
+    <xs:attribute name="HostnameFromDHCP" type="xs:boolean" />
+    <xs:attribute name="NTP" type="xs:int" />
+    <xs:attribute name="DHCPv6" type="xs:boolean" />
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="SecurityCapabilities">
+    <xs:attribute name="TLS1.0" type="xs:boolean" />
+    <xs:attribute name="TLS1.1" type="xs:boolean" />
+    <xs:attribute name="TLS1.2" type="xs:boolean" />
+    <xs:attribute name="OnboardKeyGeneration" type="xs:boolean" />
+    <xs:attribute name="AccessPolicyConfig" type="xs:boolean" />
+    <xs:attribute name="DefaultAccessPolicy" type="xs:boolean" />
+    <xs:attribute name="Dot1X" type="xs:boolean" />
+    <xs:attribute name="RemoteUserHandling" type="xs:boolean" />
+    <xs:attribute name="X.509Token" type="xs:boolean" />
+    <xs:attribute name="SAMLToken" type="xs:boolean" />
+    <xs:attribute name="KerberosToken" type="xs:boolean" />
+    <xs:attribute name="UsernameToken" type="xs:boolean" />
+    <xs:attribute name="HttpDigest" type="xs:boolean" />
+    <xs:attribute name="RELToken" type="xs:boolean" />
+    <xs:attribute name="SupportedEAPMethods" use="required">
+      <xs:simpleType>
+        <xs:list itemType="xs:int" />
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="MaxUsers" type="xs:int" />
+    <xs:attribute name="MaxUserNameLength" type="xs:int" />
+    <xs:attribute name="MaxPasswordLength" type="xs:int" />
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="SystemCapabilities">
+    <xs:attribute name="DiscoveryResolve" type="xs:boolean" />
+    <xs:attribute name="DiscoveryBye" type="xs:boolean" />
+    <xs:attribute name="RemoteDiscovery" type="xs:boolean" />
+    <xs:attribute name="SystemBackup" type="xs:boolean" />
+    <xs:attribute name="SystemLogging" type="xs:boolean" />
+    <xs:attribute name="FirmwareUpgrade" type="xs:boolean" />
+    <xs:attribute name="HttpFirmwareUpgrade" type="xs:boolean" />
+    <xs:attribute name="HttpSystemBackup" type="xs:boolean" />
+    <xs:attribute name="HttpSystemLogging" type="xs:boolean" />
+    <xs:attribute name="HttpSupportInformation" type="xs:boolean" />
+    <xs:attribute name="StorageConfiguration" type="xs:boolean" />
+    <xs:attribute name="MaxStorageConfigurations" type="xs:int" />
+    <xs:attribute name="GeoLocationEntries" type="xs:int" />
+    <xs:attribute name="AutoGeo" type="xs:string" />
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="MiscCapabilities">
+    <xs:attribute name="AuxiliaryCommands">
+      <xs:simpleType>
+        <xs:list itemType="xs:string" />
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:element name="GetDeviceInformation">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetDeviceInformationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Manufacturer" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Model" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="FirmwareVersion" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="SerialNumber" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="HardwareId" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSystemDateAndTime">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://www.onvif.org/ver10/schema" minOccurs="1" maxOccurs="1" name="DateTimeType" type="q6:SetDateTimeType" />
+        <xs:element minOccurs="1" maxOccurs="1" name="DaylightSavings" type="xs:boolean" />
+        <xs:element xmlns:q7="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="TimeZone" type="q7:TimeZone" />
+        <xs:element xmlns:q8="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="UTCDateTime" type="q8:DateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSystemDateAndTimeResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetSystemDateAndTime">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetSystemDateAndTimeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="SystemDateAndTime" type="q9:SystemDateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSystemFactoryDefault">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://www.onvif.org/ver10/schema" minOccurs="1" maxOccurs="1" name="FactoryDefault" type="q10:FactoryDefaultType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSystemFactoryDefaultResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="UpgradeSystemFirmware">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="Firmware" type="q11:AttachmentData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpgradeSystemFirmwareResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Message" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemReboot">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="SystemRebootResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Message" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RestoreSystem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="BackupFiles" type="q12:BackupFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RestoreSystemResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetSystemBackup">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetSystemBackupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="BackupFiles" type="q13:BackupFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSystemLog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://www.onvif.org/ver10/schema" minOccurs="1" maxOccurs="1" name="LogType" type="q14:SystemLogType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSystemLogResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="SystemLog" type="q15:SystemLog" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSystemSupportInformation">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetSystemSupportInformationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="SupportInformation" type="q16:SupportInformation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetScopes">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetScopesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="Scopes" type="q17:Scope" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetScopes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="Scopes" type="xs:anyURI" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetScopesResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="AddScopes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="ScopeItem" type="xs:anyURI" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddScopesResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="RemoveScopes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="ScopeItem" type="xs:anyURI" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveScopesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="ScopeItem" type="xs:anyURI" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscoveryMode">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetDiscoveryModeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://www.onvif.org/ver10/schema" minOccurs="1" maxOccurs="1" name="DiscoveryMode" type="q18:DiscoveryMode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDiscoveryMode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://www.onvif.org/ver10/schema" minOccurs="1" maxOccurs="1" name="DiscoveryMode" type="q19:DiscoveryMode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDiscoveryModeResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetRemoteDiscoveryMode">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetRemoteDiscoveryModeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://www.onvif.org/ver10/schema" minOccurs="1" maxOccurs="1" name="RemoteDiscoveryMode" type="q20:DiscoveryMode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRemoteDiscoveryMode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://www.onvif.org/ver10/schema" minOccurs="1" maxOccurs="1" name="RemoteDiscoveryMode" type="q21:DiscoveryMode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRemoteDiscoveryModeResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetDPAddresses">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetDPAddressesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="DPAddress" type="q22:NetworkHost" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDPAddresses">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="DPAddress" type="q23:NetworkHost" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDPAddressesResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetEndpointReference">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetEndpointReferenceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GUID" type="xs:string" />
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRemoteUser">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetRemoteUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="RemoteUser" type="q24:RemoteUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRemoteUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="RemoteUser" type="q25:RemoteUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRemoteUserResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetUsers">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="User" type="q26:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="User" type="q27:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateUsersResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="DeleteUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="Username" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUsersResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="SetUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="User" type="q28:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetWsdlUrl">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetWsdlUrlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="WsdlUrl" type="xs:anyURI" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCapabilities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="Category" type="q29:CapabilityCategory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCapabilitiesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="Capabilities" type="q30:Capabilities" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHostname">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetHostnameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="HostnameInformation" type="q31:HostnameInformation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetHostname">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:token" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetHostnameResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="SetHostnameFromDHCP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="FromDHCP" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetHostnameFromDHCPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="RebootNeeded" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDNS">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetDNSResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="DNSInformation" type="q32:DNSInformation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDNS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="FromDHCP" type="xs:boolean" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchDomain" type="xs:token" />
+        <xs:element xmlns:q33="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="DNSManual" type="q33:IPAddress" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDNSResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetNTP">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetNTPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="NTPInformation" type="q34:NTPInformation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNTP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="FromDHCP" type="xs:boolean" />
+        <xs:element xmlns:q35="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="NTPManual" type="q35:NetworkHost" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNTPResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetDynamicDNS">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetDynamicDNSResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="DynamicDNSInformation" type="q36:DynamicDNSInformation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDynamicDNS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://www.onvif.org/ver10/schema" minOccurs="1" maxOccurs="1" name="Type" type="q37:DynamicDNSType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:token" />
+        <xs:element minOccurs="0" maxOccurs="1" name="TTL" type="xs:duration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDynamicDNSResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetNetworkInterfaces">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetNetworkInterfacesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="NetworkInterfaces" type="q38:NetworkInterface" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNetworkInterfaces">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="InterfaceToken" type="xs:string" />
+        <xs:element xmlns:q39="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="NetworkInterface" type="q39:NetworkInterfaceSetConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNetworkInterfacesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="RebootNeeded" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNetworkProtocols">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetNetworkProtocolsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="NetworkProtocols" type="q40:NetworkProtocol" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNetworkProtocols">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="NetworkProtocols" type="q41:NetworkProtocol" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNetworkProtocolsResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetNetworkDefaultGateway">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetNetworkDefaultGatewayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="NetworkGateway" type="q42:NetworkGateway" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNetworkDefaultGateway">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="IPv4Address" type="xs:token" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="IPv6Address" type="xs:token" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNetworkDefaultGatewayResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetZeroConfiguration">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetZeroConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="ZeroConfiguration" type="q43:NetworkZeroConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetZeroConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="InterfaceToken" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetZeroConfigurationResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetIPAddressFilter">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetIPAddressFilterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="IPAddressFilter" type="q44:IPAddressFilter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetIPAddressFilter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="IPAddressFilter" type="q45:IPAddressFilter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetIPAddressFilterResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="AddIPAddressFilter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="IPAddressFilter" type="q46:IPAddressFilter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddIPAddressFilterResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="RemoveIPAddressFilter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="IPAddressFilter" type="q47:IPAddressFilter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveIPAddressFilterResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetAccessPolicy">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetAccessPolicyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="PolicyFile" type="q48:BinaryData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAccessPolicy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="PolicyFile" type="q49:BinaryData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAccessPolicyResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="CreateCertificate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="CertificateID" type="xs:token" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Subject" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ValidNotBefore" type="xs:dateTime" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ValidNotAfter" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCertificateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="NvtCertificate" type="q50:Certificate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCertificates">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetCertificatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="NvtCertificate" type="q51:Certificate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCertificatesStatus">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetCertificatesStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="CertificateStatus" type="q52:CertificateStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetCertificatesStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="CertificateStatus" type="q53:CertificateStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetCertificatesStatusResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="DeleteCertificates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="CertificateID" type="xs:token" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCertificatesResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetPkcs10Request">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="CertificateID" type="xs:token" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Subject" type="xs:string" />
+        <xs:element xmlns:q54="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="Attributes" type="q54:BinaryData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPkcs10RequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q55="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="Pkcs10Request" type="q55:BinaryData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadCertificates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="NVTCertificate" type="q56:Certificate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadCertificatesResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetClientCertificateMode">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetClientCertificateModeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetClientCertificateMode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetClientCertificateModeResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetRelayOutputs">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetRelayOutputsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q57="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="RelayOutputs" type="q57:RelayOutput" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRelayOutputSettings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="RelayOutputToken" type="xs:string" />
+        <xs:element xmlns:q58="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="Properties" type="q58:RelayOutputSettings" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRelayOutputSettingsResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="SetRelayOutputState">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="RelayOutputToken" type="xs:string" />
+        <xs:element xmlns:q59="http://www.onvif.org/ver10/schema" minOccurs="1" maxOccurs="1" name="LogicalState" type="q59:RelayLogicalState" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRelayOutputStateResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="SendAuxiliaryCommand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="AuxiliaryCommand" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendAuxiliaryCommandResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="AuxiliaryCommandResponse" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCACertificates">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetCACertificatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q60="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="CACertificate" type="q60:Certificate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadCertificateWithPrivateKey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q61="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="CertificateWithPrivateKey" type="q61:CertificateWithPrivateKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadCertificateWithPrivateKeyResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetCertificateInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="CertificateID" type="xs:token" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCertificateInformationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q62="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="CertificateInformation" type="q62:CertificateInformation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadCACertificates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q63="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="CACertificate" type="q63:Certificate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadCACertificatesResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="CreateDot1XConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q64="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="Dot1XConfiguration" type="q64:Dot1XConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDot1XConfigurationResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="SetDot1XConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q65="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="Dot1XConfiguration" type="q65:Dot1XConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDot1XConfigurationResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetDot1XConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Dot1XConfigurationToken" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDot1XConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q66="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="Dot1XConfiguration" type="q66:Dot1XConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDot1XConfigurations">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetDot1XConfigurationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="Dot1XConfiguration" type="q67:Dot1XConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDot1XConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="Dot1XConfigurationToken" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDot1XConfigurationResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetDot11Capabilities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDot11CapabilitiesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q68="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="Capabilities" type="q68:Dot11Capabilities" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDot11Status">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="InterfaceToken" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDot11StatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q69="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="Status" type="q69:Dot11Status" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScanAvailableDot11Networks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="InterfaceToken" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScanAvailableDot11NetworksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q70="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="unbounded" name="Networks" type="q70:Dot11AvailableNetworks" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSystemUris">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetSystemUrisResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q71="http://www.onvif.org/ver10/schema" minOccurs="0" maxOccurs="1" name="SystemLogUris" type="q71:ArrayOfSystemLogUri" />
+        <xs:element minOccurs="0" maxOccurs="1" name="SupportInfoUri" type="xs:anyURI" />
+        <xs:element minOccurs="0" maxOccurs="1" name="SystemBackupUri" type="xs:anyURI" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Extension">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:any minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartFirmwareUpgrade">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="StartFirmwareUpgradeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="UploadUri" type="xs:anyURI" />
+        <xs:element minOccurs="0" maxOccurs="1" name="UploadDelay" type="xs:duration" />
+        <xs:element minOccurs="0" maxOccurs="1" name="ExpectedDownTime" type="xs:duration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartSystemRestore">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="StartSystemRestoreResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="UploadUri" type="xs:anyURI" />
+        <xs:element minOccurs="0" maxOccurs="1" name="ExpectedDownTime" type="xs:duration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStorageConfigurations">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetStorageConfigurationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="StorageConfigurations" type="tns:StorageConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateStorageConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="StorageConfiguration" type="tns:StorageConfigurationData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateStorageConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Token" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStorageConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Token" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStorageConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="StorageConfiguration" type="tns:StorageConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,1671 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.onvif.org/ver10/schema" elementFormDefault="qualified" targetNamespace="http://www.onvif.org/ver10/schema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://172.0.1.213:5357/OnVifSimulatorService?xsd=xsd2" namespace="http://www.w3.org/2004/08/xop/include" />
+  <xs:import schemaLocation="http://172.0.1.213:5357/OnVifSimulatorService?xsd=xsd3" namespace="http://www.w3.org/2005/05/xmlmime" />
+  <xs:complexType name="DeviceEntity">
+    <xs:attribute name="token" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="VideoSource">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DeviceEntity">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Framerate" type="xs:float" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Resolution" type="tns:VideoResolution" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Imaging" type="tns:ImagingSettings" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:VideoSourceExtension" />
+        </xs:sequence>
+        <xs:anyAttribute />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="VideoResolution">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Width" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Height" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ImagingSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BacklightCompensation" type="tns:BacklightCompensation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Brightness" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ColorSaturation" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Contrast" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Exposure" type="tns:Exposure" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Focus" type="tns:FocusConfiguration" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IrCutFilter" type="tns:IrCutFilterMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Sharpness" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="WideDynamicRange" type="tns:WideDynamicRange" />
+      <xs:element minOccurs="0" maxOccurs="1" name="WhiteBalance" type="tns:WhiteBalance" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:ImagingSettingsExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="BacklightCompensation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:BacklightCompensationMode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Level" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="BacklightCompensationMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OFF" />
+      <xs:enumeration value="ON" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Exposure">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:ExposureMode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Priority" type="tns:ExposurePriority" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Window" type="tns:Rectangle" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MinExposureTime" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MaxExposureTime" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MinGain" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MaxGain" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MinIris" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MaxIris" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ExposureTime" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Gain" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Iris" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ExposureMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AUTO" />
+      <xs:enumeration value="MANUAL" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExposurePriority">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LowNoise" />
+      <xs:enumeration value="FrameRate" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Rectangle">
+    <xs:attribute name="bottom" type="xs:float" />
+    <xs:attribute name="top" type="xs:float" />
+    <xs:attribute name="right" type="xs:float" />
+    <xs:attribute name="left" type="xs:float" />
+  </xs:complexType>
+  <xs:complexType name="FocusConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="AutoFocusMode" type="tns:AutoFocusMode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DefaultSpeed" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NearLimit" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FarLimit" type="xs:float" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="AutoFocusMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AUTO" />
+      <xs:enumeration value="MANUAL" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IrCutFilterMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ON" />
+      <xs:enumeration value="OFF" />
+      <xs:enumeration value="AUTO" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="WideDynamicRange">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:WideDynamicMode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Level" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="WideDynamicMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OFF" />
+      <xs:enumeration value="ON" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="WhiteBalance">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:WhiteBalanceMode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CrGain" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CbGain" type="xs:float" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="WhiteBalanceMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AUTO" />
+      <xs:enumeration value="MANUAL" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ImagingSettingsExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VideoSourceExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Imaging" type="tns:ImagingSettings20" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:VideoSourceExtension2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ImagingSettings20">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BacklightCompensation" type="tns:BacklightCompensation20" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Brightness" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ColorSaturation" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Contrast" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Exposure" type="tns:Exposure20" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Focus" type="tns:FocusConfiguration20" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IrCutFilter" type="tns:IrCutFilterMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Sharpness" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="WideDynamicRange" type="tns:WideDynamicRange20" />
+      <xs:element minOccurs="0" maxOccurs="1" name="WhiteBalance" type="tns:WhiteBalance20" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:ImagingSettingsExtension20" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="BacklightCompensation20">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:BacklightCompensationMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Level" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Exposure20">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:ExposureMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Priority" type="tns:ExposurePriority" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Window" type="tns:Rectangle" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MinExposureTime" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxExposureTime" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MinGain" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxGain" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MinIris" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxIris" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ExposureTime" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Gain" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Iris" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FocusConfiguration20">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="AutoFocusMode" type="tns:AutoFocusMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DefaultSpeed" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NearLimit" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FarLimit" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:FocusConfiguration20Extension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="FocusConfiguration20Extension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WideDynamicRange20">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:WideDynamicMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Level" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WhiteBalance20">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:WhiteBalanceMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CrGain" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CbGain" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:WhiteBalance20Extension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="WhiteBalance20Extension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ImagingSettingsExtension20">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ImageStabilization" type="tns:ImageStabilization" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:ImagingSettingsExtension202" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ImageStabilization">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:ImageStabilizationMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Level" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:ImageStabilizationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="ImageStabilizationMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OFF" />
+      <xs:enumeration value="ON" />
+      <xs:enumeration value="AUTO" />
+      <xs:enumeration value="Extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ImageStabilizationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ImagingSettingsExtension202">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IrCutFilterAutoAdjustment" type="tns:IrCutFilterAutoAdjustment" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:ImagingSettingsExtension203" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IrCutFilterAutoAdjustment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BoundaryType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BoundaryOffset" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ResponseTime" type="xs:duration" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:IrCutFilterAutoAdjustmentExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="IrCutFilterAutoAdjustmentExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ImagingSettingsExtension203">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ToneCompensation" type="tns:ToneCompensation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Defogging" type="tns:Defogging" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NoiseReduction" type="tns:NoiseReduction" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:ImagingSettingsExtension204" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ToneCompensation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Mode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Level" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:ToneCompensationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="ToneCompensationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Defogging">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Mode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Level" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:DefoggingExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="DefoggingExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NoiseReduction">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Level" type="xs:float" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="ImagingSettingsExtension204">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VideoSourceExtension2">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AudioSource">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DeviceEntity">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Channels" type="xs:int" />
+          <xs:any minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:anyAttribute />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="VideoOutput">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DeviceEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Layout" type="tns:Layout" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Resolution" type="tns:VideoResolution" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RefreshRate" type="xs:float" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AspectRatio" type="xs:float" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:VideoOutputExtension" />
+        </xs:sequence>
+        <xs:anyAttribute />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Layout">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaneLayout" type="tns:PaneLayout" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:LayoutExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="PaneLayout">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Pane" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Area" type="tns:Rectangle" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="LayoutExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VideoOutputExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AudioOutput">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DeviceEntity">
+        <xs:sequence>
+          <xs:any minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:anyAttribute />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NetworkInterface">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DeviceEntity">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Info" type="tns:NetworkInterfaceInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Link" type="tns:NetworkInterfaceLink" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IPv4" type="tns:IPv4NetworkInterface" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IPv6" type="tns:IPv6NetworkInterface" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:NetworkInterfaceExtension" />
+        </xs:sequence>
+        <xs:anyAttribute />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NetworkInterfaceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HwAddress" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MTU" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkInterfaceLink">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AdminSettings" type="tns:NetworkInterfaceConnectionSetting" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OperSettings" type="tns:NetworkInterfaceConnectionSetting" />
+      <xs:element minOccurs="1" maxOccurs="1" name="InterfaceType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkInterfaceConnectionSetting">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="AutoNegotiation" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Speed" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Duplex" type="tns:Duplex" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="Duplex">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Full" />
+      <xs:enumeration value="Half" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="IPv4NetworkInterface">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Config" type="tns:IPv4Configuration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPv4Configuration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Manual" type="tns:PrefixedIPv4Address" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LinkLocal" type="tns:PrefixedIPv4Address" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FromDHCP" type="tns:PrefixedIPv4Address" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DHCP" type="xs:boolean" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="PrefixedIPv4Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="xs:token" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PrefixLength" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPv6NetworkInterface">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Config" type="tns:IPv6Configuration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPv6Configuration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AcceptRouterAdvert" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DHCP" type="tns:IPv6DHCPConfiguration" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Manual" type="tns:PrefixedIPv6Address" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LinkLocal" type="tns:PrefixedIPv6Address" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FromDHCP" type="tns:PrefixedIPv6Address" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FromRA" type="tns:PrefixedIPv6Address" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:IPv6ConfigurationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="IPv6DHCPConfiguration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Auto" />
+      <xs:enumeration value="Stateful" />
+      <xs:enumeration value="Stateless" />
+      <xs:enumeration value="Off" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="PrefixedIPv6Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="xs:token" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PrefixLength" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPv6ConfigurationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkInterfaceExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="1" maxOccurs="1" name="InterfaceType" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Dot3" type="tns:Dot3Configuration" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Dot11" type="tns:Dot11Configuration" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:NetworkInterfaceExtension2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Dot3Configuration">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="Dot11Configuration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SSID" type="xs:hexBinary" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:Dot11StationMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Priority" type="xs:integer" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Security" type="tns:Dot11SecurityConfiguration" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="Dot11StationMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ad-hoc" />
+      <xs:enumeration value="Infrastructure" />
+      <xs:enumeration value="Extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Dot11SecurityConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:Dot11SecurityMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Algorithm" type="tns:Dot11Cipher" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PSK" type="tns:Dot11PSKSet" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Dot1X" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:Dot11SecurityConfigurationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="Dot11SecurityMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="WEP" />
+      <xs:enumeration value="PSK" />
+      <xs:enumeration value="Dot1X" />
+      <xs:enumeration value="Extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Dot11Cipher">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CCMP" />
+      <xs:enumeration value="TKIP" />
+      <xs:enumeration value="Any" />
+      <xs:enumeration value="Extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Dot11PSKSet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="xs:hexBinary" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Passphrase" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:Dot11PSKSetExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="Dot11PSKSetExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Dot11SecurityConfigurationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="NetworkInterfaceExtension2">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RelayOutput">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DeviceEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:RelayOutputSettings" />
+          <xs:any minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:anyAttribute />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RelayOutputSettings">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:RelayMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DelayTime" type="xs:duration" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IdleState" type="tns:RelayIdleState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="RelayMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Monostable" />
+      <xs:enumeration value="Bistable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RelayIdleState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="closed" />
+      <xs:enumeration value="open" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DigitalInput">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DeviceEntity">
+        <xs:sequence>
+          <xs:any minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="IdleState" type="tns:DigitalIdleState" />
+        <xs:anyAttribute />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="DigitalIdleState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="closed" />
+      <xs:enumeration value="open" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="PTZNode">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DeviceEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SupportedPTZSpaces" type="tns:PTZSpaces" />
+          <xs:element minOccurs="1" maxOccurs="1" name="MaximumNumberOfPresets" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HomeSupported" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="AuxiliaryCommands" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:PTZNodeExtension" />
+        </xs:sequence>
+        <xs:attribute name="FixedHomePosition" type="xs:boolean" />
+        <xs:anyAttribute />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PTZSpaces">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AbsolutePanTiltPositionSpace" type="tns:Space2DDescription" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AbsoluteZoomPositionSpace" type="tns:Space1DDescription" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RelativePanTiltTranslationSpace" type="tns:Space2DDescription" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RelativeZoomTranslationSpace" type="tns:Space1DDescription" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContinuousPanTiltVelocitySpace" type="tns:Space2DDescription" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContinuousZoomVelocitySpace" type="tns:Space1DDescription" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PanTiltSpeedSpace" type="tns:Space1DDescription" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZoomSpeedSpace" type="tns:Space1DDescription" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:PTZSpacesExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="Space2DDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="URI" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="XRange" type="tns:FloatRange" />
+      <xs:element minOccurs="0" maxOccurs="1" name="YRange" type="tns:FloatRange" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FloatRange">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Min" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Max" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Space1DDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="URI" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="XRange" type="tns:FloatRange" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PTZSpacesExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PTZNodeExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SupportedPresetTour" type="tns:PTZPresetTourSupported" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:PTZNodeExtension2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PTZPresetTourSupported">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="MaximumNumberOfPresetTours" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PTZPresetTourOperation" type="tns:PTZPresetTourOperation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:PTZPresetTourSupportedExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="PTZPresetTourOperation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Start" />
+      <xs:enumeration value="Stop" />
+      <xs:enumeration value="Pause" />
+      <xs:enumeration value="Extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="PTZPresetTourSupportedExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PTZNodeExtension2">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OSDConfiguration">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DeviceEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="VideoSourceConfigurationToken" type="tns:OSDReference" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:OSDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Position" type="tns:OSDPosConfiguration" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TextString" type="tns:OSDTextConfiguration" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Image" type="tns:OSDImgConfiguration" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:OSDConfigurationExtension" />
+        </xs:sequence>
+        <xs:anyAttribute />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OSDReference">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:anyAttribute />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="OSDType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Text" />
+      <xs:enumeration value="Image" />
+      <xs:enumeration value="Extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OSDPosConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Pos" type="tns:Vector" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:OSDPosConfigurationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="Vector">
+    <xs:attribute name="x" type="xs:float" />
+    <xs:attribute name="y" type="xs:float" />
+  </xs:complexType>
+  <xs:complexType name="OSDPosConfigurationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="OSDTextConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DateFormat" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TimeFormat" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FontSize" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FontColor" type="tns:OSDColor" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BackgroundColor" type="tns:OSDColor" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PlainText" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:OSDTextConfigurationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="OSDColor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Color" type="tns:Color" />
+    </xs:sequence>
+    <xs:attribute name="Transparent" type="xs:int" />
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="Color">
+    <xs:attribute name="X" type="xs:float" use="required" />
+    <xs:attribute name="Y" type="xs:float" use="required" />
+    <xs:attribute name="Z" type="xs:float" use="required" />
+    <xs:attribute name="Colorspace" type="xs:anyURI" />
+  </xs:complexType>
+  <xs:complexType name="OSDTextConfigurationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="OSDImgConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ImgPath" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:OSDImgConfigurationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="OSDImgConfigurationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="OSDConfigurationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="LocationEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="GeoLocation" type="tns:GeoLocation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="GeoOrientation" type="tns:GeoOrientation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LocalLocation" type="tns:LocalLocation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LocalOrientation" type="tns:LocalOrientation" />
+    </xs:sequence>
+    <xs:attribute name="Entity" type="xs:string" />
+    <xs:attribute name="Token" type="xs:string" />
+    <xs:attribute name="Fixed" type="xs:boolean" />
+    <xs:attribute name="GeoSource" type="xs:anyURI" />
+    <xs:attribute name="AutoGeo" type="xs:boolean" />
+  </xs:complexType>
+  <xs:complexType name="GeoLocation">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="lon" type="xs:double" />
+    <xs:attribute name="lat" type="xs:double" />
+    <xs:attribute name="elevation" type="xs:float" />
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="GeoOrientation">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="roll" type="xs:float" />
+    <xs:attribute name="pitch" type="xs:float" />
+    <xs:attribute name="yaw" type="xs:float" />
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="LocalLocation">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="x" type="xs:float" />
+    <xs:attribute name="y" type="xs:float" />
+    <xs:attribute name="z" type="xs:float" />
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="LocalOrientation">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="pan" type="xs:float" />
+    <xs:attribute name="tilt" type="xs:float" />
+    <xs:attribute name="roll" type="xs:float" />
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="OnvifVersion">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Major" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Minor" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="SetDateTimeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Manual" />
+      <xs:enumeration value="NTP" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TimeZone">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="TZ" type="xs:token" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateTime">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Time" type="tns:Time" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Date" type="tns:Date" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Time">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Hour" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Minute" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Second" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Date">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Year" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Month" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Day" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemDateTime">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateTimeType" type="tns:SetDateTimeType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DaylightSavings" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TimeZone" type="tns:TimeZone" />
+      <xs:element minOccurs="0" maxOccurs="1" name="UTCDateTime" type="tns:DateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LocalDateTime" type="tns:DateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:SystemDateTimeExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="SystemDateTimeExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="FactoryDefaultType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Hard" />
+      <xs:enumeration value="Soft" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AttachmentData">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://www.w3.org/2004/08/xop/include" minOccurs="0" maxOccurs="1" ref="q1:Include" />
+    </xs:sequence>
+    <xs:attribute xmlns:q2="http://www.w3.org/2005/05/xmlmime" ref="q2:contentType" />
+  </xs:complexType>
+  <xs:complexType name="BackupFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Data" type="tns:AttachmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="SystemLogType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="System" />
+      <xs:enumeration value="Access" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SystemLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Binary" type="tns:AttachmentData" />
+      <xs:element minOccurs="0" maxOccurs="1" name="String" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SupportInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Binary" type="tns:AttachmentData" />
+      <xs:element minOccurs="0" maxOccurs="1" name="String" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Scope">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ScopeDef" type="tns:ScopeDefinition" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ScopeItem" type="xs:anyURI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ScopeDefinition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Fixed" />
+      <xs:enumeration value="Configurable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DiscoveryMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Discoverable" />
+      <xs:enumeration value="NonDiscoverable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="NetworkHost">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:NetworkHostType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPv4Address" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPv6Address" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DNSname" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:NetworkHostExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="NetworkHostType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IPv4" />
+      <xs:enumeration value="IPv6" />
+      <xs:enumeration value="DNS" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="NetworkHostExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RemoteUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Username" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Password" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UseDerivedPassword" type="xs:boolean" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Username" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Password" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UserLevel" type="tns:UserLevel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:UserExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="UserLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Administrator" />
+      <xs:enumeration value="Operator" />
+      <xs:enumeration value="User" />
+      <xs:enumeration value="Anonymous" />
+      <xs:enumeration value="Extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="UserExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CapabilityCategory">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="All" />
+      <xs:enumeration value="Analytics" />
+      <xs:enumeration value="Device" />
+      <xs:enumeration value="Events" />
+      <xs:enumeration value="Imaging" />
+      <xs:enumeration value="Media" />
+      <xs:enumeration value="PTZ" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Capabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Analytics" type="tns:AnalyticsCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Device" type="tns:DeviceCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Events" type="tns:EventCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Imaging" type="tns:ImagingCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Media" type="tns:MediaCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PTZ" type="tns:PTZCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:CapabilitiesExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="AnalyticsCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RuleSupport" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AnalyticsModuleSupport" type="xs:boolean" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="DeviceCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Network" type="tns:NetworkCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="System" type="tns:SystemCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IO" type="tns:IOCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Security" type="tns:SecurityCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:DeviceCapabilitiesExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="NetworkCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="IPFilter" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ZeroConfiguration" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPVersion6" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DynDNS" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:NetworkCapabilitiesExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="NetworkCapabilitiesExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Dot11Configuration" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:NetworkCapabilitiesExtension2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkCapabilitiesExtension2">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DiscoveryResolve" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DiscoveryBye" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RemoteDiscovery" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SystemBackup" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SystemLogging" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FirmwareUpgrade" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SupportedVersions" type="tns:OnvifVersion" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:SystemCapabilitiesExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="SystemCapabilitiesExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HttpFirmwareUpgrade" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HttpSystemBackup" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HttpSystemLogging" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HttpSupportInformation" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:SystemCapabilitiesExtension2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemCapabilitiesExtension2">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IOCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="InputConnectors" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RelayOutputs" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:IOCapabilitiesExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="IOCapabilitiesExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Auxiliary" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AuxiliaryCommands" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:IOCapabilitiesExtension2" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="IOCapabilitiesExtension2">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SecurityCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TLS1.1" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TLS1.2" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OnboardKeyGeneration" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AccessPolicyConfig" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="X.509Token" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SAMLToken" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="KerberosToken" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RELToken" type="xs:boolean" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:SecurityCapabilitiesExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="SecurityCapabilitiesExtension">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TLS1.0" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:SecurityCapabilitiesExtension2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SecurityCapabilitiesExtension2">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Dot1X" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SupportedEAPMethod" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RemoteUserHandling" type="xs:boolean" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeviceCapabilitiesExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EventCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:element minOccurs="1" maxOccurs="1" name="WSSubscriptionPolicySupport" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="WSPullPointSupport" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="WSPausableSubscriptionManagerInterfaceSupport" type="xs:boolean" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="ImagingCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="MediaCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StreamingCapabilities" type="tns:RealTimeStreamingCapabilities" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:MediaCapabilitiesExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="RealTimeStreamingCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="RTPMulticast" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RTP_TCP" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RTP_RTSP_TCP" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:RealTimeStreamingCapabilitiesExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="RealTimeStreamingCapabilitiesExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MediaCapabilitiesExtension">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ProfileCapabilities" type="tns:ProfileCapabilities" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="ProfileCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="MaximumNumberOfProfiles" type="xs:int" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="PTZCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="CapabilitiesExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeviceIO" type="tns:DeviceIOCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Display" type="tns:DisplayCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Recording" type="tns:RecordingCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Search" type="tns:SearchCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Replay" type="tns:ReplayCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Receiver" type="tns:ReceiverCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AnalyticsDevice" type="tns:AnalyticsDeviceCapabilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extensions" type="tns:CapabilitiesExtension2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeviceIOCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VideoSources" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VideoOutputs" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AudioSources" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AudioOutputs" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RelayOutputs" type="xs:int" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="DisplayCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FixedLayout" type="xs:boolean" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="RecordingCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReceiverSource" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MediaProfileSource" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DynamicRecordings" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DynamicTracks" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MaxStringLength" type="xs:int" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="SearchCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MetadataSearch" type="xs:boolean" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="ReplayCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="ReceiverCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RTP_Multicast" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RTP_TCP" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RTP_RTSP_TCP" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SupportedReceivers" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MaximumRTSPURILength" type="xs:int" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="AnalyticsDeviceCapabilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="XAddr" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RuleSupport" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:AnalyticsDeviceExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="AnalyticsDeviceExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CapabilitiesExtension2">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HostnameInformation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="FromDHCP" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:HostnameInformationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="HostnameInformationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DNSInformation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="FromDHCP" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchDomain" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DNSFromDHCP" type="tns:IPAddress" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DNSManual" type="tns:IPAddress" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:DNSInformationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="IPAddress">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:IPType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPv4Address" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPv6Address" type="xs:token" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="IPType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IPv4" />
+      <xs:enumeration value="IPv6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DNSInformationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NTPInformation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="FromDHCP" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NTPFromDHCP" type="tns:NetworkHost" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NTPManual" type="tns:NetworkHost" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:NTPInformationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="NTPInformationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DynamicDNSInformation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:DynamicDNSType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TTL" type="xs:duration" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:DynamicDNSInformationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="DynamicDNSType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NoUpdate" />
+      <xs:enumeration value="ClientUpdates" />
+      <xs:enumeration value="ServerUpdates" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DynamicDNSInformationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkInterfaceSetConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Link" type="tns:NetworkInterfaceConnectionSetting" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MTU" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPv4" type="tns:IPv4NetworkInterfaceSetConfiguration" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPv6" type="tns:IPv6NetworkInterfaceSetConfiguration" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:NetworkInterfaceSetConfigurationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="IPv4NetworkInterfaceSetConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Manual" type="tns:PrefixedIPv4Address" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DHCP" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPv6NetworkInterfaceSetConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AcceptRouterAdvert" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Manual" type="tns:PrefixedIPv6Address" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DHCP" type="tns:IPv6DHCPConfiguration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkInterfaceSetConfigurationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Dot3" type="tns:Dot3Configuration" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Dot11" type="tns:Dot11Configuration" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:NetworkInterfaceSetConfigurationExtension2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkInterfaceSetConfigurationExtension2">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkProtocol">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="tns:NetworkProtocolType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Port" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:NetworkProtocolExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="NetworkProtocolType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HTTP" />
+      <xs:enumeration value="HTTPS" />
+      <xs:enumeration value="RTSP" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="NetworkProtocolExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkGateway">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPv4Address" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPv6Address" type="xs:token" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkZeroConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="InterfaceToken" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Addresses" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:NetworkZeroConfigurationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="NetworkZeroConfigurationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Additional" type="tns:NetworkZeroConfiguration" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:NetworkZeroConfigurationExtension2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkZeroConfigurationExtension2">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPAddressFilter">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:IPAddressFilterType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPv4Address" type="tns:PrefixedIPv4Address" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPv6Address" type="tns:PrefixedIPv6Address" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:IPAddressFilterExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="IPAddressFilterType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Allow" />
+      <xs:enumeration value="Deny" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="IPAddressFilterExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BinaryData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Data" type="xs:base64Binary" />
+    </xs:sequence>
+    <xs:attribute xmlns:q3="http://www.w3.org/2005/05/xmlmime" ref="q3:contentType" />
+  </xs:complexType>
+  <xs:complexType name="Certificate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CertificateID" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Certificate" type="tns:BinaryData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CertificateStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CertificateID" type="xs:token" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="xs:boolean" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="RelayLogicalState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="active" />
+      <xs:enumeration value="inactive" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CertificateWithPrivateKey">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CertificateID" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Certificate" type="tns:BinaryData" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PrivateKey" type="tns:BinaryData" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="CertificateInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CertificateID" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IssuerDN" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SubjectDN" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="KeyUsage" type="tns:CertificateUsage" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ExtendedKeyUsage" type="tns:CertificateUsage" />
+      <xs:element minOccurs="0" maxOccurs="1" name="KeyLength" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Version" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SerialNum" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SignatureAlgorithm" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Validity" type="tns:DateTimeRange" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:CertificateInformationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="CertificateUsage">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="Critical" type="xs:boolean" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DateTimeRange">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="From" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Until" type="xs:dateTime" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="CertificateInformationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Dot1XConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Dot1XConfigurationToken" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Identity" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AnonymousID" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EAPMethod" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CACertificateID" type="xs:token" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EAPMethodConfiguration" type="tns:EAPMethodConfiguration" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:Dot1XConfigurationExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="EAPMethodConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="TLSConfiguration" type="tns:TLSConfiguration" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Password" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:EapMethodExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="TLSConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CertificateID" type="xs:token" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="EapMethodExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Dot1XConfigurationExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Dot11Capabilities">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TKIP" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ScanAvailableNetworks" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MultipleConfiguration" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AdHocStationMode" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="WEP" type="xs:boolean" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:complexType name="Dot11Status">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SSID" type="xs:hexBinary" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BSSID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PairCipher" type="tns:Dot11Cipher" />
+      <xs:element minOccurs="0" maxOccurs="1" name="GroupCipher" type="tns:Dot11Cipher" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SignalStrength" type="tns:Dot11SignalStrength" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ActiveConfigAlias" type="xs:string" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="Dot11SignalStrength">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Very Bad" />
+      <xs:enumeration value="Bad" />
+      <xs:enumeration value="Good" />
+      <xs:enumeration value="Very Good" />
+      <xs:enumeration value="Extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Dot11AvailableNetworks">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SSID" type="xs:hexBinary" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BSSID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AuthAndMangementSuite" type="tns:Dot11AuthAndMangementSuite" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PairCipher" type="tns:Dot11Cipher" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GroupCipher" type="tns:Dot11Cipher" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SignalStrength" type="tns:Dot11SignalStrength" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="tns:Dot11AvailableNetworksExtension" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+  <xs:simpleType name="Dot11AuthAndMangementSuite">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Dot1X" />
+      <xs:enumeration value="PSK" />
+      <xs:enumeration value="Extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Dot11AvailableNetworksExtension">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfSystemLogUri">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SystemLog" type="tns:SystemLogUri" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemLogUri">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:SystemLogType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Uri" type="xs:anyURI" />
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute />
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="649727fa-c615-49f0-ac1b-ab4c148a18ee" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.0.2.9:5357/OnVifSimulatorService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OnVifSimulatorService.xsd" MetadataType="Schema" ID="6f54b748-ddb5-4bbe-a261-2b0ef25c8dd4" SourceId="1" SourceUrl="http://172.0.1.213:5357/OnVifSimulatorService?xsd=xsd3" />
+    <MetadataFile FileName="OnVifSimulatorService1.xsd" MetadataType="Schema" ID="d584bfc5-3fa6-4091-a8ac-85a529706cdd" SourceId="1" SourceUrl="http://172.0.1.213:5357/OnVifSimulatorService?xsd=xsd2" />
+    <MetadataFile FileName="OnVifSimulatorService2.xsd" MetadataType="Schema" ID="5be545d0-0d9e-4ce3-ba2e-13909168a05f" SourceId="1" SourceUrl="http://172.0.1.213:5357/OnVifSimulatorService?xsd=xsd1" />
+    <MetadataFile FileName="OnVifSimulatorService3.xsd" MetadataType="Schema" ID="d87547fb-ec2e-4f3d-88c1-c4ca2cabd0c3" SourceId="1" SourceUrl="http://172.0.1.213:5357/OnVifSimulatorService?xsd=xsd0" />
+    <MetadataFile FileName="OnVifSimulatorService1.wsdl" MetadataType="Wsdl" ID="52548316-3d48-42ec-84c6-ef329fd4f5ae" SourceId="1" SourceUrl="http://172.0.1.213:5357/OnVifSimulatorService?wsdl" />
+    <MetadataFile FileName="OnVifSimulatorService11.wsdl" MetadataType="Wsdl" ID="cf577132-1821-49c1-b166-2cd51adccbdf" SourceId="1" SourceUrl="http://172.0.1.213:5357/OnVifSimulatorService?wsdl=wsdl0" />
+    <MetadataFile FileName="OnVifSimulatorService.disco" MetadataType="Disco" ID="d7ceac5c-49d2-4999-9ef1-dff3d50416c8" SourceId="1" SourceUrl="http://172.0.1.213:5357/OnVifSimulatorService?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

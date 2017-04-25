@@ -1,0 +1,47 @@
+{
+    "modules": [   
+		{
+            "name": "dotnet_SnmpModule",
+            "loader": {
+                "name": "dotnet",
+                "entrypoint": {		
+                    "assembly.name": "Alstom.SnmpModule",
+                    "entry.type": "Alstom.SnmpModule.SnmpModule"
+                }
+            },
+            "args": "dotnet_SnmpModule configuration"            
+        },
+		{
+            "name": "dotnet_FilterModule",
+            "loader": {
+                "name": "dotnet",
+                "entrypoint": {		
+                    "assembly.name": "Alstom.FilterModule",
+                    "entry.type": "Alstom.FilterModule.FilterModule"
+                }
+            },
+            "args": "FilterModule configuration"
+        },
+		{
+            "name": "dotnet_ApiRestClientModule",
+            "loader": {
+                "name": "dotnet",
+                "entrypoint": {		
+                    "assembly.name": "Alstom.ApiRestClientModule",
+                    "entry.type": "Alstom.ApiRestClientModule.ApiRestClientModule"
+                }
+            },
+            "args": { "restApiEndPoint" : "http://iotwebsite.azurewebsites.net/api/documentDB/devices"}
+        }		
+    ],
+    "links": [
+		{
+            "source": "dotnet_SnmpModule",
+            "sink": "dotnet_FilterModule"
+        },
+		{
+            "source": "dotnet_FilterModule",
+            "sink": "dotnet_ApiRestClientModule"
+        }
+    ]
+}

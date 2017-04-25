@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.onvif.org/ver10/device/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.onvif.org/ver10/device/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.onvif.org/ver10/device/wsdl/Imports">
+      <xsd:import schemaLocation="http://172.0.1.213:5357/OnVifSimulatorService?xsd=xsd0" namespace="http://www.onvif.org/ver10/device/wsdl" />
+      <xsd:import schemaLocation="http://172.0.1.213:5357/OnVifSimulatorService?xsd=xsd1" namespace="http://www.onvif.org/ver10/schema" />
+      <xsd:import schemaLocation="http://172.0.1.213:5357/OnVifSimulatorService?xsd=xsd2" namespace="http://www.w3.org/2004/08/xop/include" />
+      <xsd:import schemaLocation="http://172.0.1.213:5357/OnVifSimulatorService?xsd=xsd3" namespace="http://www.w3.org/2005/05/xmlmime" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IOnVifDevice_SetStorageConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetStorageConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetStorageConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetStorageConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_DeleteStorageConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStorageConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_DeleteStorageConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStorageConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGeoLocationRequest">
+    <wsdl:part name="parameters" element="tns:GetGeoLocation" />
+  </wsdl:message>
+  <wsdl:message name="GetGeoLocationResponse">
+    <wsdl:part name="parameters" element="tns:GetGeoLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetGeoLocationRequest">
+    <wsdl:part name="parameters" element="tns:SetGeoLocation" />
+  </wsdl:message>
+  <wsdl:message name="SetGeoLocationResponse">
+    <wsdl:part name="parameters" element="tns:SetGeoLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteGeoLocationRequest">
+    <wsdl:part name="parameters" element="tns:DeleteGeoLocation" />
+  </wsdl:message>
+  <wsdl:message name="DeleteGeoLocationResponse">
+    <wsdl:part name="parameters" element="tns:DeleteGeoLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServicesRequest">
+    <wsdl:part name="parameters" element="tns:GetServices" />
+  </wsdl:message>
+  <wsdl:message name="GetServicesResponse">
+    <wsdl:part name="parameters" element="tns:GetServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetServiceCapabilities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServiceCapabilities" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetServiceCapabilities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServiceCapabilitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeviceInformationRequest">
+    <wsdl:part name="parameters" element="tns:GetDeviceInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetDeviceInformationResponse">
+    <wsdl:part name="parameters" element="tns:GetDeviceInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetSystemDateAndTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetSystemDateAndTime" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetSystemDateAndTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetSystemDateAndTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetSystemDateAndTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSystemDateAndTime" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetSystemDateAndTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSystemDateAndTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetSystemFactoryDefault_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetSystemFactoryDefault" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetSystemFactoryDefault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetSystemFactoryDefaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_UpgradeSystemFirmware_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpgradeSystemFirmware" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_UpgradeSystemFirmware_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpgradeSystemFirmwareResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SystemReboot_InputMessage">
+    <wsdl:part name="parameters" element="tns:SystemReboot" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SystemReboot_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SystemRebootResponse" />
+  </wsdl:message>
+  <wsdl:message name="RestoreSystemRequest">
+    <wsdl:part name="parameters" element="tns:RestoreSystem" />
+  </wsdl:message>
+  <wsdl:message name="RestoreSystemResponse">
+    <wsdl:part name="parameters" element="tns:RestoreSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemBackupRequest">
+    <wsdl:part name="parameters" element="tns:GetSystemBackup" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemBackupResponse">
+    <wsdl:part name="parameters" element="tns:GetSystemBackupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetSystemLog_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSystemLog" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetSystemLog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSystemLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetSystemSupportInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSystemSupportInformation" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetSystemSupportInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSystemSupportInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetScopesRequest">
+    <wsdl:part name="parameters" element="tns:GetScopes" />
+  </wsdl:message>
+  <wsdl:message name="GetScopesResponse">
+    <wsdl:part name="parameters" element="tns:GetScopesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetScopesRequest">
+    <wsdl:part name="parameters" element="tns:SetScopes" />
+  </wsdl:message>
+  <wsdl:message name="SetScopesResponse">
+    <wsdl:part name="parameters" element="tns:SetScopesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddScopesRequest">
+    <wsdl:part name="parameters" element="tns:AddScopes" />
+  </wsdl:message>
+  <wsdl:message name="AddScopesResponse">
+    <wsdl:part name="parameters" element="tns:AddScopesResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveScopesRequest">
+    <wsdl:part name="parameters" element="tns:RemoveScopes" />
+  </wsdl:message>
+  <wsdl:message name="RemoveScopesResponse">
+    <wsdl:part name="parameters" element="tns:RemoveScopesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetDiscoveryMode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscoveryMode" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetDiscoveryMode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscoveryModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetDiscoveryMode_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDiscoveryMode" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetDiscoveryMode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDiscoveryModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetRemoteDiscoveryMode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRemoteDiscoveryMode" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetRemoteDiscoveryMode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRemoteDiscoveryModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetRemoteDiscoveryMode_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRemoteDiscoveryMode" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetRemoteDiscoveryMode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRemoteDiscoveryModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDPAddressesRequest">
+    <wsdl:part name="parameters" element="tns:GetDPAddresses" />
+  </wsdl:message>
+  <wsdl:message name="GetDPAddressesResponse">
+    <wsdl:part name="parameters" element="tns:GetDPAddressesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDPAddressesRequest">
+    <wsdl:part name="parameters" element="tns:SetDPAddresses" />
+  </wsdl:message>
+  <wsdl:message name="SetDPAddressesResponse">
+    <wsdl:part name="parameters" element="tns:SetDPAddressesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEndpointReferenceRequest">
+    <wsdl:part name="parameters" element="tns:GetEndpointReference" />
+  </wsdl:message>
+  <wsdl:message name="GetEndpointReferenceResponse">
+    <wsdl:part name="parameters" element="tns:GetEndpointReferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetRemoteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRemoteUser" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetRemoteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRemoteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetRemoteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRemoteUser" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetRemoteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRemoteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersRequest">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersResponse">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateUsersRequest">
+    <wsdl:part name="parameters" element="tns:CreateUsers" />
+  </wsdl:message>
+  <wsdl:message name="CreateUsersResponse">
+    <wsdl:part name="parameters" element="tns:CreateUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUsersRequest">
+    <wsdl:part name="parameters" element="tns:DeleteUsers" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUsersResponse">
+    <wsdl:part name="parameters" element="tns:DeleteUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserRequest">
+    <wsdl:part name="parameters" element="tns:SetUser" />
+  </wsdl:message>
+  <wsdl:message name="SetUserResponse">
+    <wsdl:part name="parameters" element="tns:SetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWsdlUrlRequest">
+    <wsdl:part name="parameters" element="tns:GetWsdlUrl" />
+  </wsdl:message>
+  <wsdl:message name="GetWsdlUrlResponse">
+    <wsdl:part name="parameters" element="tns:GetWsdlUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCapabilitiesRequest">
+    <wsdl:part name="parameters" element="tns:GetCapabilities" />
+  </wsdl:message>
+  <wsdl:message name="GetCapabilitiesResponse">
+    <wsdl:part name="parameters" element="tns:GetCapabilitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetHostname_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHostname" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetHostname_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHostnameResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetHostnameRequest">
+    <wsdl:part name="parameters" element="tns:SetHostname" />
+  </wsdl:message>
+  <wsdl:message name="SetHostnameResponse">
+    <wsdl:part name="parameters" element="tns:SetHostnameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetHostnameFromDHCP_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetHostnameFromDHCP" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetHostnameFromDHCP_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetHostnameFromDHCPResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetDNS_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDNS" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetDNS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDNSResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDNSRequest">
+    <wsdl:part name="parameters" element="tns:SetDNS" />
+  </wsdl:message>
+  <wsdl:message name="SetDNSResponse">
+    <wsdl:part name="parameters" element="tns:SetDNSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetNTP_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNTP" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetNTP_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNTPResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetNTPRequest">
+    <wsdl:part name="parameters" element="tns:SetNTP" />
+  </wsdl:message>
+  <wsdl:message name="SetNTPResponse">
+    <wsdl:part name="parameters" element="tns:SetNTPResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetDynamicDNS_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDynamicDNS" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetDynamicDNS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDynamicDNSResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDynamicDNSRequest">
+    <wsdl:part name="parameters" element="tns:SetDynamicDNS" />
+  </wsdl:message>
+  <wsdl:message name="SetDynamicDNSResponse">
+    <wsdl:part name="parameters" element="tns:SetDynamicDNSResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNetworkInterfacesRequest">
+    <wsdl:part name="parameters" element="tns:GetNetworkInterfaces" />
+  </wsdl:message>
+  <wsdl:message name="GetNetworkInterfacesResponse">
+    <wsdl:part name="parameters" element="tns:GetNetworkInterfacesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetNetworkInterfaces_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNetworkInterfaces" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetNetworkInterfaces_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetNetworkInterfacesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNetworkProtocolsRequest">
+    <wsdl:part name="parameters" element="tns:GetNetworkProtocols" />
+  </wsdl:message>
+  <wsdl:message name="GetNetworkProtocolsResponse">
+    <wsdl:part name="parameters" element="tns:GetNetworkProtocolsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetNetworkProtocolsRequest">
+    <wsdl:part name="parameters" element="tns:SetNetworkProtocols" />
+  </wsdl:message>
+  <wsdl:message name="SetNetworkProtocolsResponse">
+    <wsdl:part name="parameters" element="tns:SetNetworkProtocolsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetNetworkDefaultGateway_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNetworkDefaultGateway" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetNetworkDefaultGateway_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNetworkDefaultGatewayResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetNetworkDefaultGatewayRequest">
+    <wsdl:part name="parameters" element="tns:SetNetworkDefaultGateway" />
+  </wsdl:message>
+  <wsdl:message name="SetNetworkDefaultGatewayResponse">
+    <wsdl:part name="parameters" element="tns:SetNetworkDefaultGatewayResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetZeroConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZeroConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetZeroConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZeroConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetZeroConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetZeroConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetZeroConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetZeroConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetIPAddressFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIPAddressFilter" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetIPAddressFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIPAddressFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetIPAddressFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetIPAddressFilter" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetIPAddressFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetIPAddressFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_AddIPAddressFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddIPAddressFilter" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_AddIPAddressFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddIPAddressFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_RemoveIPAddressFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveIPAddressFilter" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_RemoveIPAddressFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveIPAddressFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetAccessPolicy_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccessPolicy" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetAccessPolicy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccessPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetAccessPolicy_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAccessPolicy" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetAccessPolicy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAccessPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCertificateRequest">
+    <wsdl:part name="parameters" element="tns:CreateCertificate" />
+  </wsdl:message>
+  <wsdl:message name="CreateCertificateResponse">
+    <wsdl:part name="parameters" element="tns:CreateCertificateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificatesRequest">
+    <wsdl:part name="parameters" element="tns:GetCertificates" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificatesResponse">
+    <wsdl:part name="parameters" element="tns:GetCertificatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificatesStatusRequest">
+    <wsdl:part name="parameters" element="tns:GetCertificatesStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificatesStatusResponse">
+    <wsdl:part name="parameters" element="tns:GetCertificatesStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCertificatesStatusRequest">
+    <wsdl:part name="parameters" element="tns:SetCertificatesStatus" />
+  </wsdl:message>
+  <wsdl:message name="SetCertificatesStatusResponse">
+    <wsdl:part name="parameters" element="tns:SetCertificatesStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCertificatesRequest">
+    <wsdl:part name="parameters" element="tns:DeleteCertificates" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCertificatesResponse">
+    <wsdl:part name="parameters" element="tns:DeleteCertificatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPkcs10RequestRequest">
+    <wsdl:part name="parameters" element="tns:GetPkcs10Request" />
+  </wsdl:message>
+  <wsdl:message name="GetPkcs10RequestResponse">
+    <wsdl:part name="parameters" element="tns:GetPkcs10RequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadCertificatesRequest">
+    <wsdl:part name="parameters" element="tns:LoadCertificates" />
+  </wsdl:message>
+  <wsdl:message name="LoadCertificatesResponse">
+    <wsdl:part name="parameters" element="tns:LoadCertificatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetClientCertificateMode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientCertificateMode" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetClientCertificateMode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientCertificateModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetClientCertificateMode_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetClientCertificateMode" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetClientCertificateMode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetClientCertificateModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRelayOutputsRequest">
+    <wsdl:part name="parameters" element="tns:GetRelayOutputs" />
+  </wsdl:message>
+  <wsdl:message name="GetRelayOutputsResponse">
+    <wsdl:part name="parameters" element="tns:GetRelayOutputsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetRelayOutputSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRelayOutputSettings" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetRelayOutputSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRelayOutputSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetRelayOutputState_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRelayOutputState" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetRelayOutputState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRelayOutputStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SendAuxiliaryCommand_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAuxiliaryCommand" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SendAuxiliaryCommand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAuxiliaryCommandResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCACertificatesRequest">
+    <wsdl:part name="parameters" element="tns:GetCACertificates" />
+  </wsdl:message>
+  <wsdl:message name="GetCACertificatesResponse">
+    <wsdl:part name="parameters" element="tns:GetCACertificatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadCertificateWithPrivateKeyRequest">
+    <wsdl:part name="parameters" element="tns:LoadCertificateWithPrivateKey" />
+  </wsdl:message>
+  <wsdl:message name="LoadCertificateWithPrivateKeyResponse">
+    <wsdl:part name="parameters" element="tns:LoadCertificateWithPrivateKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificateInformationRequest">
+    <wsdl:part name="parameters" element="tns:GetCertificateInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificateInformationResponse">
+    <wsdl:part name="parameters" element="tns:GetCertificateInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadCACertificatesRequest">
+    <wsdl:part name="parameters" element="tns:LoadCACertificates" />
+  </wsdl:message>
+  <wsdl:message name="LoadCACertificatesResponse">
+    <wsdl:part name="parameters" element="tns:LoadCACertificatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_CreateDot1XConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDot1XConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_CreateDot1XConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDot1XConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetDot1XConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDot1XConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_SetDot1XConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDot1XConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetDot1XConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDot1XConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetDot1XConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDot1XConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDot1XConfigurationsRequest">
+    <wsdl:part name="parameters" element="tns:GetDot1XConfigurations" />
+  </wsdl:message>
+  <wsdl:message name="GetDot1XConfigurationsResponse">
+    <wsdl:part name="parameters" element="tns:GetDot1XConfigurationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDot1XConfigurationRequest">
+    <wsdl:part name="parameters" element="tns:DeleteDot1XConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDot1XConfigurationResponse">
+    <wsdl:part name="parameters" element="tns:DeleteDot1XConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDot11CapabilitiesRequest">
+    <wsdl:part name="parameters" element="tns:GetDot11Capabilities" />
+  </wsdl:message>
+  <wsdl:message name="GetDot11CapabilitiesResponse">
+    <wsdl:part name="parameters" element="tns:GetDot11CapabilitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetDot11Status_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDot11Status" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetDot11Status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDot11StatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScanAvailableDot11NetworksRequest">
+    <wsdl:part name="parameters" element="tns:ScanAvailableDot11Networks" />
+  </wsdl:message>
+  <wsdl:message name="ScanAvailableDot11NetworksResponse">
+    <wsdl:part name="parameters" element="tns:ScanAvailableDot11NetworksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemUrisRequest">
+    <wsdl:part name="parameters" element="tns:GetSystemUris" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemUrisResponse">
+    <wsdl:part name="parameters" element="tns:GetSystemUrisResponse" />
+  </wsdl:message>
+  <wsdl:message name="StartFirmwareUpgradeRequest">
+    <wsdl:part name="parameters" element="tns:StartFirmwareUpgrade" />
+  </wsdl:message>
+  <wsdl:message name="StartFirmwareUpgradeResponse">
+    <wsdl:part name="parameters" element="tns:StartFirmwareUpgradeResponse" />
+  </wsdl:message>
+  <wsdl:message name="StartSystemRestoreRequest">
+    <wsdl:part name="parameters" element="tns:StartSystemRestore" />
+  </wsdl:message>
+  <wsdl:message name="StartSystemRestoreResponse">
+    <wsdl:part name="parameters" element="tns:StartSystemRestoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStorageConfigurationsRequest">
+    <wsdl:part name="parameters" element="tns:GetStorageConfigurations" />
+  </wsdl:message>
+  <wsdl:message name="GetStorageConfigurationsResponse">
+    <wsdl:part name="parameters" element="tns:GetStorageConfigurationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_CreateStorageConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateStorageConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_CreateStorageConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateStorageConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetStorageConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStorageConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IOnVifDevice_GetStorageConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStorageConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IOnVifDevice">
+    <wsdl:operation name="SetStorageConfiguration">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetStorageConfiguration" message="tns:IOnVifDevice_SetStorageConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetStorageConfigurationResponse" message="tns:IOnVifDevice_SetStorageConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStorageConfiguration">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/DeleteStorageConfiguration" message="tns:IOnVifDevice_DeleteStorageConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/DeleteStorageConfigurationResponse" message="tns:IOnVifDevice_DeleteStorageConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGeoLocation">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetGeoLocation" name="GetGeoLocationRequest" message="tns:GetGeoLocationRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetGeoLocationResponse" name="GetGeoLocationResponse" message="tns:GetGeoLocationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SetGeoLocation">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetGeoLocation" name="SetGeoLocationRequest" message="tns:SetGeoLocationRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetGeoLocationResponse" name="SetGeoLocationResponse" message="tns:SetGeoLocationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGeoLocation">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/DeleteGeoLocation" name="DeleteGeoLocationRequest" message="tns:DeleteGeoLocationRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/DeleteGeoLocationResponse" name="DeleteGeoLocationResponse" message="tns:DeleteGeoLocationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetServices" name="GetServicesRequest" message="tns:GetServicesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetServicesResponse" name="GetServicesResponse" message="tns:GetServicesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceCapabilities">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetServiceCapabilities" message="tns:IOnVifDevice_GetServiceCapabilities_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetServiceCapabilitiesResponse" message="tns:IOnVifDevice_GetServiceCapabilities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeviceInformation">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetDeviceInformation" name="GetDeviceInformationRequest" message="tns:GetDeviceInformationRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetDeviceInformationResponse" name="GetDeviceInformationResponse" message="tns:GetDeviceInformationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSystemDateAndTime">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetSystemDateAndTime" message="tns:IOnVifDevice_SetSystemDateAndTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetSystemDateAndTimeResponse" message="tns:IOnVifDevice_SetSystemDateAndTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemDateAndTime">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetSystemDateAndTime" message="tns:IOnVifDevice_GetSystemDateAndTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetSystemDateAndTimeResponse" message="tns:IOnVifDevice_GetSystemDateAndTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSystemFactoryDefault">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetSystemFactoryDefault" message="tns:IOnVifDevice_SetSystemFactoryDefault_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetSystemFactoryDefaultResponse" message="tns:IOnVifDevice_SetSystemFactoryDefault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpgradeSystemFirmware">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/UpgradeSystemFirmware" message="tns:IOnVifDevice_UpgradeSystemFirmware_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/UpgradeSystemFirmwareResponse" message="tns:IOnVifDevice_UpgradeSystemFirmware_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemReboot">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SystemReboot" message="tns:IOnVifDevice_SystemReboot_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SystemRebootResponse" message="tns:IOnVifDevice_SystemReboot_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RestoreSystem">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/RestoreSystem" name="RestoreSystemRequest" message="tns:RestoreSystemRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/RestoreSystemResponse" name="RestoreSystemResponse" message="tns:RestoreSystemResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemBackup">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetSystemBackup" name="GetSystemBackupRequest" message="tns:GetSystemBackupRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetSystemBackupResponse" name="GetSystemBackupResponse" message="tns:GetSystemBackupResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemLog">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetSystemLog" message="tns:IOnVifDevice_GetSystemLog_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetSystemLogResponse" message="tns:IOnVifDevice_GetSystemLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemSupportInformation">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetSystemSupportInformation" message="tns:IOnVifDevice_GetSystemSupportInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetSystemSupportInformationResponse" message="tns:IOnVifDevice_GetSystemSupportInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetScopes">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetScopes" name="GetScopesRequest" message="tns:GetScopesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetScopesResponse" name="GetScopesResponse" message="tns:GetScopesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SetScopes">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetScopes" name="SetScopesRequest" message="tns:SetScopesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetScopesResponse" name="SetScopesResponse" message="tns:SetScopesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AddScopes">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/AddScopes" name="AddScopesRequest" message="tns:AddScopesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/AddScopesResponse" name="AddScopesResponse" message="tns:AddScopesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveScopes">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/RemoveScopes" name="RemoveScopesRequest" message="tns:RemoveScopesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/RemoveScopesResponse" name="RemoveScopesResponse" message="tns:RemoveScopesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscoveryMode">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetDiscoveryMode" message="tns:IOnVifDevice_GetDiscoveryMode_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetDiscoveryModeResponse" message="tns:IOnVifDevice_GetDiscoveryMode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDiscoveryMode">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetDiscoveryMode" message="tns:IOnVifDevice_SetDiscoveryMode_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetDiscoveryModeResponse" message="tns:IOnVifDevice_SetDiscoveryMode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRemoteDiscoveryMode">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetRemoteDiscoveryMode" message="tns:IOnVifDevice_GetRemoteDiscoveryMode_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetRemoteDiscoveryModeResponse" message="tns:IOnVifDevice_GetRemoteDiscoveryMode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRemoteDiscoveryMode">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetRemoteDiscoveryMode" message="tns:IOnVifDevice_SetRemoteDiscoveryMode_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetRemoteDiscoveryModeResponse" message="tns:IOnVifDevice_SetRemoteDiscoveryMode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDPAddresses">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetDPAddresses" name="GetDPAddressesRequest" message="tns:GetDPAddressesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetDPAddressesResponse" name="GetDPAddressesResponse" message="tns:GetDPAddressesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDPAddresses">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetDPAddresses" name="SetDPAddressesRequest" message="tns:SetDPAddressesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetDPAddressesResponse" name="SetDPAddressesResponse" message="tns:SetDPAddressesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEndpointReference">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetEndpointReference" name="GetEndpointReferenceRequest" message="tns:GetEndpointReferenceRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetEndpointReferenceResponse" name="GetEndpointReferenceResponse" message="tns:GetEndpointReferenceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRemoteUser">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetRemoteUser" message="tns:IOnVifDevice_GetRemoteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetRemoteUserResponse" message="tns:IOnVifDevice_GetRemoteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRemoteUser">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetRemoteUser" message="tns:IOnVifDevice_SetRemoteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetRemoteUserResponse" message="tns:IOnVifDevice_SetRemoteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetUsers" name="GetUsersRequest" message="tns:GetUsersRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetUsersResponse" name="GetUsersResponse" message="tns:GetUsersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUsers">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/CreateUsers" name="CreateUsersRequest" message="tns:CreateUsersRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/CreateUsersResponse" name="CreateUsersResponse" message="tns:CreateUsersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUsers">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/DeleteUsers" name="DeleteUsersRequest" message="tns:DeleteUsersRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/DeleteUsersResponse" name="DeleteUsersResponse" message="tns:DeleteUsersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUser">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetUser" name="SetUserRequest" message="tns:SetUserRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetUserResponse" name="SetUserResponse" message="tns:SetUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWsdlUrl">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetWsdlUrl" name="GetWsdlUrlRequest" message="tns:GetWsdlUrlRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetWsdlUrlResponse" name="GetWsdlUrlResponse" message="tns:GetWsdlUrlResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCapabilities">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetCapabilities" name="GetCapabilitiesRequest" message="tns:GetCapabilitiesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetCapabilitiesResponse" name="GetCapabilitiesResponse" message="tns:GetCapabilitiesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHostname">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetHostname" message="tns:IOnVifDevice_GetHostname_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetHostnameResponse" message="tns:IOnVifDevice_GetHostname_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetHostname">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetHostname" name="SetHostnameRequest" message="tns:SetHostnameRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetHostnameResponse" name="SetHostnameResponse" message="tns:SetHostnameResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SetHostnameFromDHCP">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetHostnameFromDHCP" message="tns:IOnVifDevice_SetHostnameFromDHCP_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetHostnameFromDHCPResponse" message="tns:IOnVifDevice_SetHostnameFromDHCP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDNS">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetDNS" message="tns:IOnVifDevice_GetDNS_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetDNSResponse" message="tns:IOnVifDevice_GetDNS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDNS">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetDNS" name="SetDNSRequest" message="tns:SetDNSRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetDNSResponse" name="SetDNSResponse" message="tns:SetDNSResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNTP">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetNTP" message="tns:IOnVifDevice_GetNTP_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetNTPResponse" message="tns:IOnVifDevice_GetNTP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNTP">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetNTP" name="SetNTPRequest" message="tns:SetNTPRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetNTPResponse" name="SetNTPResponse" message="tns:SetNTPResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDynamicDNS">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetDynamicDNS" message="tns:IOnVifDevice_GetDynamicDNS_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetDynamicDNSResponse" message="tns:IOnVifDevice_GetDynamicDNS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDynamicDNS">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetDynamicDNS" name="SetDynamicDNSRequest" message="tns:SetDynamicDNSRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetDynamicDNSResponse" name="SetDynamicDNSResponse" message="tns:SetDynamicDNSResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNetworkInterfaces">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetNetworkInterfaces" name="GetNetworkInterfacesRequest" message="tns:GetNetworkInterfacesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetNetworkInterfacesResponse" name="GetNetworkInterfacesResponse" message="tns:GetNetworkInterfacesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNetworkInterfaces">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetNetworkInterfaces" message="tns:IOnVifDevice_SetNetworkInterfaces_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetNetworkInterfacesResponse" message="tns:IOnVifDevice_SetNetworkInterfaces_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNetworkProtocols">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetNetworkProtocols" name="GetNetworkProtocolsRequest" message="tns:GetNetworkProtocolsRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetNetworkProtocolsResponse" name="GetNetworkProtocolsResponse" message="tns:GetNetworkProtocolsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNetworkProtocols">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetNetworkProtocols" name="SetNetworkProtocolsRequest" message="tns:SetNetworkProtocolsRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetNetworkProtocolsResponse" name="SetNetworkProtocolsResponse" message="tns:SetNetworkProtocolsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNetworkDefaultGateway">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetNetworkDefaultGateway" message="tns:IOnVifDevice_GetNetworkDefaultGateway_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetNetworkDefaultGatewayResponse" message="tns:IOnVifDevice_GetNetworkDefaultGateway_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNetworkDefaultGateway">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetNetworkDefaultGateway" name="SetNetworkDefaultGatewayRequest" message="tns:SetNetworkDefaultGatewayRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetNetworkDefaultGatewayResponse" name="SetNetworkDefaultGatewayResponse" message="tns:SetNetworkDefaultGatewayResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZeroConfiguration">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetZeroConfiguration" message="tns:IOnVifDevice_GetZeroConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetZeroConfigurationResponse" message="tns:IOnVifDevice_GetZeroConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetZeroConfiguration">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetZeroConfiguration" message="tns:IOnVifDevice_SetZeroConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetZeroConfigurationResponse" message="tns:IOnVifDevice_SetZeroConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIPAddressFilter">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetIPAddressFilter" message="tns:IOnVifDevice_GetIPAddressFilter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetIPAddressFilterResponse" message="tns:IOnVifDevice_GetIPAddressFilter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetIPAddressFilter">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetIPAddressFilter" message="tns:IOnVifDevice_SetIPAddressFilter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetIPAddressFilterResponse" message="tns:IOnVifDevice_SetIPAddressFilter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddIPAddressFilter">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/AddIPAddressFilter" message="tns:IOnVifDevice_AddIPAddressFilter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/AddIPAddressFilterResponse" message="tns:IOnVifDevice_AddIPAddressFilter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveIPAddressFilter">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/RemoveIPAddressFilter" message="tns:IOnVifDevice_RemoveIPAddressFilter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/RemoveIPAddressFilterResponse" message="tns:IOnVifDevice_RemoveIPAddressFilter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccessPolicy">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetAccessPolicy" message="tns:IOnVifDevice_GetAccessPolicy_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetAccessPolicyResponse" message="tns:IOnVifDevice_GetAccessPolicy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAccessPolicy">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetAccessPolicy" message="tns:IOnVifDevice_SetAccessPolicy_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetAccessPolicyResponse" message="tns:IOnVifDevice_SetAccessPolicy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCertificate">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/CreateCertificate" name="CreateCertificateRequest" message="tns:CreateCertificateRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/CreateCertificateResponse" name="CreateCertificateResponse" message="tns:CreateCertificateResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificates">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetCertificates" name="GetCertificatesRequest" message="tns:GetCertificatesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetCertificatesResponse" name="GetCertificatesResponse" message="tns:GetCertificatesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificatesStatus">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetCertificatesStatus" name="GetCertificatesStatusRequest" message="tns:GetCertificatesStatusRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetCertificatesStatusResponse" name="GetCertificatesStatusResponse" message="tns:GetCertificatesStatusResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCertificatesStatus">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetCertificatesStatus" name="SetCertificatesStatusRequest" message="tns:SetCertificatesStatusRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetCertificatesStatusResponse" name="SetCertificatesStatusResponse" message="tns:SetCertificatesStatusResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCertificates">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/DeleteCertificates" name="DeleteCertificatesRequest" message="tns:DeleteCertificatesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/DeleteCertificatesResponse" name="DeleteCertificatesResponse" message="tns:DeleteCertificatesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPkcs10Request">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetPkcs10Request" name="GetPkcs10RequestRequest" message="tns:GetPkcs10RequestRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetPkcs10RequestResponse" name="GetPkcs10RequestResponse" message="tns:GetPkcs10RequestResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadCertificates">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/LoadCertificates" name="LoadCertificatesRequest" message="tns:LoadCertificatesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/LoadCertificatesResponse" name="LoadCertificatesResponse" message="tns:LoadCertificatesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientCertificateMode">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetClientCertificateMode" message="tns:IOnVifDevice_GetClientCertificateMode_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetClientCertificateModeResponse" message="tns:IOnVifDevice_GetClientCertificateMode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetClientCertificateMode">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetClientCertificateMode" message="tns:IOnVifDevice_SetClientCertificateMode_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetClientCertificateModeResponse" message="tns:IOnVifDevice_SetClientCertificateMode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRelayOutputs">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetRelayOutputs" name="GetRelayOutputsRequest" message="tns:GetRelayOutputsRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetRelayOutputsResponse" name="GetRelayOutputsResponse" message="tns:GetRelayOutputsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRelayOutputSettings">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetRelayOutputSettings" message="tns:IOnVifDevice_SetRelayOutputSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetRelayOutputSettingsResponse" message="tns:IOnVifDevice_SetRelayOutputSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRelayOutputState">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetRelayOutputState" message="tns:IOnVifDevice_SetRelayOutputState_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetRelayOutputStateResponse" message="tns:IOnVifDevice_SetRelayOutputState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendAuxiliaryCommand">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SendAuxiliaryCommand" message="tns:IOnVifDevice_SendAuxiliaryCommand_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SendAuxiliaryCommandResponse" message="tns:IOnVifDevice_SendAuxiliaryCommand_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCACertificates">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetCACertificates" name="GetCACertificatesRequest" message="tns:GetCACertificatesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetCACertificatesResponse" name="GetCACertificatesResponse" message="tns:GetCACertificatesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadCertificateWithPrivateKey">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/LoadCertificateWithPrivateKey" name="LoadCertificateWithPrivateKeyRequest" message="tns:LoadCertificateWithPrivateKeyRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/LoadCertificateWithPrivateKeyResponse" name="LoadCertificateWithPrivateKeyResponse" message="tns:LoadCertificateWithPrivateKeyResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateInformation">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetCertificateInformation" name="GetCertificateInformationRequest" message="tns:GetCertificateInformationRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetCertificateInformationResponse" name="GetCertificateInformationResponse" message="tns:GetCertificateInformationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadCACertificates">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/LoadCACertificates" name="LoadCACertificatesRequest" message="tns:LoadCACertificatesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/LoadCACertificatesResponse" name="LoadCACertificatesResponse" message="tns:LoadCACertificatesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDot1XConfiguration">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/CreateDot1XConfiguration" message="tns:IOnVifDevice_CreateDot1XConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/CreateDot1XConfigurationResponse" message="tns:IOnVifDevice_CreateDot1XConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDot1XConfiguration">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/SetDot1XConfiguration" message="tns:IOnVifDevice_SetDot1XConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/SetDot1XConfigurationResponse" message="tns:IOnVifDevice_SetDot1XConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDot1XConfiguration">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetDot1XConfiguration" message="tns:IOnVifDevice_GetDot1XConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetDot1XConfigurationResponse" message="tns:IOnVifDevice_GetDot1XConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDot1XConfigurations">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetDot1XConfigurations" name="GetDot1XConfigurationsRequest" message="tns:GetDot1XConfigurationsRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetDot1XConfigurationsResponse" name="GetDot1XConfigurationsResponse" message="tns:GetDot1XConfigurationsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDot1XConfiguration">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/DeleteDot1XConfiguration" name="DeleteDot1XConfigurationRequest" message="tns:DeleteDot1XConfigurationRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/DeleteDot1XConfigurationResponse" name="DeleteDot1XConfigurationResponse" message="tns:DeleteDot1XConfigurationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDot11Capabilities">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetDot11Capabilities" name="GetDot11CapabilitiesRequest" message="tns:GetDot11CapabilitiesRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetDot11CapabilitiesResponse" name="GetDot11CapabilitiesResponse" message="tns:GetDot11CapabilitiesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDot11Status">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetDot11Status" message="tns:IOnVifDevice_GetDot11Status_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetDot11StatusResponse" message="tns:IOnVifDevice_GetDot11Status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanAvailableDot11Networks">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/ScanAvailableDot11Networks" name="ScanAvailableDot11NetworksRequest" message="tns:ScanAvailableDot11NetworksRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/ScanAvailableDot11NetworksResponse" name="ScanAvailableDot11NetworksResponse" message="tns:ScanAvailableDot11NetworksResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemUris">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetSystemUris" name="GetSystemUrisRequest" message="tns:GetSystemUrisRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetSystemUrisResponse" name="GetSystemUrisResponse" message="tns:GetSystemUrisResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="StartFirmwareUpgrade">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/StartFirmwareUpgrade" name="StartFirmwareUpgradeRequest" message="tns:StartFirmwareUpgradeRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/StartFirmwareUpgradeResponse" name="StartFirmwareUpgradeResponse" message="tns:StartFirmwareUpgradeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="StartSystemRestore">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/StartSystemRestore" name="StartSystemRestoreRequest" message="tns:StartSystemRestoreRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/StartSystemRestoreResponse" name="StartSystemRestoreResponse" message="tns:StartSystemRestoreResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStorageConfigurations">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetStorageConfigurations" name="GetStorageConfigurationsRequest" message="tns:GetStorageConfigurationsRequest" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetStorageConfigurationsResponse" name="GetStorageConfigurationsResponse" message="tns:GetStorageConfigurationsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateStorageConfiguration">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/CreateStorageConfiguration" message="tns:IOnVifDevice_CreateStorageConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/CreateStorageConfigurationResponse" message="tns:IOnVifDevice_CreateStorageConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStorageConfiguration">
+      <wsdl:input wsaw:Action="http://www.onvif.org/ver10/device/wsdl/GetStorageConfiguration" message="tns:IOnVifDevice_GetStorageConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.onvif.org/ver10/device/wsdl/IOnVifDevice/GetStorageConfigurationResponse" message="tns:IOnVifDevice_GetStorageConfiguration_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

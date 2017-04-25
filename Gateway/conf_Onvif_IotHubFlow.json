@@ -1,0 +1,92 @@
+{
+    "modules": [        
+        {
+            "name": "Logger",
+            "loader": {
+                "name": "native",
+                "entrypoint": {
+                    "module.path": "logger.dll"
+                }
+            },
+            "args": {
+                "filename": "AlstomIoTGateway.log"
+            }
+        },
+		{
+            "name": "dotnet_onvif",
+            "loader": {
+                "name": "dotnet",
+                "entrypoint": {
+                    "assembly.name": "Alstom.OnvifModule",
+                    "entry.type": "Alstom.OnvifModule.OnvifModule"
+                }
+            },
+            "args": "Onvif configuration"
+        },
+		{
+            "name": "dotnet_FilterModule",
+            "loader": {
+                "name": "dotnet",
+                "entrypoint": {		
+                    "assembly.name": "Alstom.FilterModule",
+                    "entry.type": "Alstom.FilterModule.FilterModule"
+                }
+            },
+            "args": "FilterModule configuration"
+        },
+		{
+            "name": "alstom_mapping",
+            "loader": {
+                "name": "dotnet",
+                "entrypoint": {
+                    "assembly.name": "Alstom.MappingModule",
+                    "entry.type": "Alstom.Mapping.DeviceMappingModule"
+                }
+            },
+			"args": [
+				{
+					"deviceID":"ACCC8E72EA25",
+					"iothub_deviceId": "cam1",
+					"iothub_deviceKey": "lZcmVuk6jzjvBEj5hefis/JfCfrUJp0+7T+lTxypymY="
+				},
+				{
+					"deviceID":"ACCC8E72F0E3",
+					"iothub_deviceId": "cam2",
+					"iothub_deviceKey": "a1DpgC+Fpx6Dnu/dBGndN4boeU8B/fx6HH14yZRTbUQ="
+				},
+				{
+					"deviceID":"ACCC8E78FBF9",
+					"iothub_deviceId": "cam3",
+					"iothub_deviceKey": "Apb+9448sdfS34slpf+fBnabgs3d0mQcx1wWpCBtpjs="
+				}
+			]
+        },
+		{
+            "name": "alstom_azure",
+            "loader": {
+                "name": "dotnet",
+                "entrypoint": {
+                    "assembly.name": "Alstom.IoTHubModule",
+                    "entry.type": "Alstom.IoTHub.IoTHubSenderModule"
+                }
+            },
+			"args": {
+				"iotHubUri": "alstomhubazure.azure-devices.net"
+			}
+        }
+    ],
+    "links": [
+		{
+            "source": "dotnet_onvif",
+            "sink": "dotnet_FilterModule"
+        },
+		{
+            "source": "dotnet_FilterModule",
+            "sink": "alstom_mapping"
+        },
+		{
+            "source": "alstom_mapping",
+            "sink": "alstom_azure"
+        }
+    ]
+}

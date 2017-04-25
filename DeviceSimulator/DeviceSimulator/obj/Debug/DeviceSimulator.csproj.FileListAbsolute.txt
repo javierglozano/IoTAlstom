@@ -1,0 +1,5 @@
+C:\Users\Jgomezl.EUROPE.000\Projects\IoTAlstom\DeviceSimulator\DeviceSimulator\bin\Debug\DeviceSimulator.exe.config
+C:\Users\Jgomezl.EUROPE.000\Projects\IoTAlstom\DeviceSimulator\DeviceSimulator\bin\Debug\DeviceSimulator.exe
+C:\Users\Jgomezl.EUROPE.000\Projects\IoTAlstom\DeviceSimulator\DeviceSimulator\bin\Debug\DeviceSimulator.pdb
+C:\Users\Jgomezl.EUROPE.000\Projects\IoTAlstom\DeviceSimulator\DeviceSimulator\obj\Debug\DeviceSimulator.exe
+C:\Users\Jgomezl.EUROPE.000\Projects\IoTAlstom\DeviceSimulator\DeviceSimulator\obj\Debug\DeviceSimulator.pdb

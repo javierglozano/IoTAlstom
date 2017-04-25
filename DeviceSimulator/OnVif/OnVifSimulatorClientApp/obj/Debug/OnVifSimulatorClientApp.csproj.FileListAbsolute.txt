@@ -1,0 +1,6 @@
+C:\Users\Jgomezl.EUROPE.000\Projects\IoTAlstom\DeviceSimulator\OnVif\OnVifSimulatorClientApp\bin\Debug\OnVifSimulatorClientApp.exe.config
+C:\Users\Jgomezl.EUROPE.000\Projects\IoTAlstom\DeviceSimulator\OnVif\OnVifSimulatorClientApp\bin\Debug\OnVifSimulatorClientApp.exe
+C:\Users\Jgomezl.EUROPE.000\Projects\IoTAlstom\DeviceSimulator\OnVif\OnVifSimulatorClientApp\bin\Debug\OnVifSimulatorClientApp.pdb
+C:\Users\Jgomezl.EUROPE.000\Projects\IoTAlstom\DeviceSimulator\OnVif\OnVifSimulatorClientApp\obj\Debug\OnVifSimulatorClientApp.csprojResolveAssemblyReference.cache
+C:\Users\Jgomezl.EUROPE.000\Projects\IoTAlstom\DeviceSimulator\OnVif\OnVifSimulatorClientApp\obj\Debug\OnVifSimulatorClientApp.exe
+C:\Users\Jgomezl.EUROPE.000\Projects\IoTAlstom\DeviceSimulator\OnVif\OnVifSimulatorClientApp\obj\Debug\OnVifSimulatorClientApp.pdb
